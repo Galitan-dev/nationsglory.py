@@ -40,6 +40,11 @@ print("Time Played:", player.time_played) # Time Played: 2 mois 28 j 12 h 51 m 5
 
 ## Dependencies
 
-[![python3.9.0](https://img.shields.io/badge/python-3.9.0-brightgreen?style=for-the-badge&logo=python)](https://www.python.org/downloads/release/python-390/)
+[![python3.9.0](https://img.shields.io/badge/python-3.9.0-brightgreen?style=for-the-badge&logo=python&logoColor=brightgreen)](https://www.python.org/downloads/release/python-390/)
 [![requests==2.22.0](https://img.shields.io/badge/requests-2.22.0-blue?style=for-the-badge)](https://pypi.org/project/requests/2.22.0/)
 [![html-to-json==1.0.1](https://img.shields.io/badge/html--to--json-1.0.1-blue?style=for-the-badge)](https://pypi.org/project/json-to-html/1.0.1/)
+
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
