@@ -1,5 +1,5 @@
 
-# NationsGlory.py [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/galitan-dev/nationsglory.py/blob/master/LICENSEs)
+# NationsGlory.py [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/galitan-dev/nationsglory.py/blob/master/LICENSE)
 
 A python library that collects information from nationsglory.fr, just for you.
 
