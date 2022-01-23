@@ -1,5 +1,5 @@
 
-# NationsGlory.py
+# NationsGlory.py [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/galitan-dev/nationsglory.py/blob/master/LICENSEs)
 
 A python library that collects information from nationsglory.fr, just for you.
 
@@ -17,10 +17,10 @@ A python library that collects information from nationsglory.fr, just for you.
 
 ## Installation
 
-Install ng with pip
+Install nations-glory with pip
 
 ```bash
-pip install ng
+pip install nations-glory
 ```
     
 ## Usage/Examples
@@ -38,8 +38,8 @@ print("Time Played:", player.time_played) # Time Played: 2 mois 28 j 12 h 51 m 5
 ```
 
 
-## Badges
+## Dependencies
 
-Add badges from somewhere like: [shields.io](https://shields.io/)
-
-[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/galitan-dev/nationsglory.py/blob/master/LICENSEs)
+[![python3.9.0](https://img.shields.io/badge/python-3.9.0-brightgreen?style=for-the-badge&logo=python)](https://www.python.org/downloads/release/python-390/)
+[![requests==2.22.0](https://img.shields.io/badge/requests-2.22.0-blue?style=for-the-badge)](https://pypi.org/project/requests/2.22.0/)
+[![html-to-json==1.0.1](https://img.shields.io/badge/html--to--json-1.0.1-blue?style=for-the-badge)](https://pypi.org/project/json-to-html/1.0.1/)
