@@ -7,7 +7,7 @@ long_description = (this_directory / "README.md").read_text()
 setup(
     name='nations-glory',
     packages=find_packages(include=['nations_glory']),
-    version='0.1.1',
+    version='0.2.0',
     description='A python library that collects information from nationsglory.fr, just for you.',
     long_description=long_description,
     long_description_content_type='text/markdown',
