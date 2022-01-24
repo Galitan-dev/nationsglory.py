@@ -1,5 +1,4 @@
 from enum import Enum
-
 class Servers(Enum):
     BLUE = 'blue'
     ORANGE = 'orange'
@@ -15,3 +14,6 @@ class Servers(Enum):
     GAMMA = 'gamma'
     OMEGA = 'omega'
     PURPLE = 'purple'
+
+    def get_map_url(self):
+        return "https://%s.nationsglory.fr" % self.value

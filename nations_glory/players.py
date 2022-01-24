@@ -1,6 +1,9 @@
+from datetime import datetime
 from re import I
 from nations_glory import Servers
 from nations_glory.html import Dom
+from nations_glory.countries import Country, CountryRanks
+from nations_glory.helpers import parse_duration
 
 BASE_URL = 'https://nationsglory.fr/profile/'
 
@@ -52,14 +55,14 @@ class Player():
         card: PlayerCard = self[self.favorite_server]
         return card.max_power
 
-    last_connection = property(get_last_connection)
-    time_played = property(get_time_played)
-    rank = property(get_rank)
-    reputation = property(get_reputation)
-    country = property(get_country)
-    country_rank = property(get_country_rank)
-    power = property(get_power)
-    max_power = property(get_max_power)
+    last_connection: str = property(get_last_connection)
+    time_played: int = property(get_time_played)
+    rank: str = property(get_rank)
+    reputation: str = property(get_reputation)
+    country: Country = property(get_country)
+    country_rank: CountryRanks = property(get_country_rank)
+    power: int = property(get_power)
+    max_power: int = property(get_max_power)
 
     def fetch(self):
         dom = Dom.from_url(BASE_URL + self.name)
@@ -81,15 +84,17 @@ class PlayerCard(object):
             attributes={'data-server': self.server.value}
         )
 
-        self.last_connection = self.get('dernière connexion')
-        self.time_played = self.get('temps de jeu')
-        self.rank = self.get('grade')
-        self.reputation = self.get('réputation')
-        self.country = self.get('pays')
-        self.country_rank = self.get('rang de pays')
-        power = self.get('power')
-        self.power = int(power.split('/')[0]) if power != None else None
-        self.max_power = int(power.split('/')[1]) if power != None else None
+        
+        self.last_connection: str = self.get('dernière connexion')
+        self.time_played: int = parse_duration(self.get('temps de jeu') or '')
+        self.rank: str = self.get('grade')
+        self.reputation: str = self.get('réputation')
+        self.country: Country = Country(self.get('pays'), self.server)
+        self.country_rank: CountryRanks = CountryRanks.get(self.get('rang de pays'))
+        
+        power: str = self.get('power')
+        self.power: int = int(power.split('/')[0]) if power != None else None
+        self.max_power: int = int(power.split('/')[1]) if power != None else None
 
     def get(self, key: str) -> str:
         label = self.card.find(tag='h4', innerMatch=('^' + key + '$', I))
