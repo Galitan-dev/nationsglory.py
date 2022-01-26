@@ -1,7 +1,6 @@
 from nations_glory import Servers
 from nations_glory.countries import CountryRanks
 from nations_glory.players import Player
-from nations_glory.helpers import parse_duration
 
 def test_just_steel_pink():
     player = Player('Just_Steel', Servers.PINK)

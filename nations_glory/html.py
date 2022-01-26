@@ -1,7 +1,6 @@
 import re
 from typing import Tuple
 import requests as https
-import json as JSON
 from html_to_json import convert as html_to_json
 
 class Element():
@@ -47,11 +46,12 @@ class Element():
 
         if len(self.children) > 0:
             if self.innerHTML != None:
-                lines.append(left + self.innerHTML)
+                for l in self.innerHTML.split('\n'):
+                    lines.append(left + l)
             for child in self.children:
                 lines.append(child.as_html(indent, 1))
         else:
-            return lines[0] + self.innerHTML + "</%s>" % self.tag
+            return lines[0] + (self.innerHTML or '') + "</%s>" % self.tag
 
         lines.append("</%s>" % self.tag)
 
@@ -96,6 +96,47 @@ class Element():
                 return child_found
 
         return None
+
+    def findAll(
+        self, 
+        tag: str = None, 
+        id: str = None, 
+        classes: list[str] = [], 
+        attributes: dict = None, 
+        innerMatch: Tuple[str, str] = None
+    ):
+        list = []
+        for child in self.children:
+            if child == None:
+                continue
+
+            if (
+                (tag == None or child.tag == tag) and 
+                (id == None or child.id == id) and
+                (innerMatch == None or (
+                    child.innerHTML != None and
+                    re.match(innerMatch[0], child.innerHTML, innerMatch[1] or 0)
+                ))
+            ):
+                classesMatch = True
+                for class_ in classes:
+                    if child.classes == None or not class_ in child.classes:
+                        classesMatch = False
+
+                attributesMatch = True
+                if type(attributes) is dict: 
+                    for attr in attributes:
+                        if child.get_attr(attr) != attributes.get(attr):
+                            attributesMatch = False
+
+                if classesMatch and attributesMatch:
+                    list.append(child)
+
+            children_found = child.findAll(tag, id, classes, attributes, innerMatch)
+            for child in children_found:
+                list.append(child)
+
+        return list
 
     def get_classes(self) -> list[str]:
         return self.get_attr('class')

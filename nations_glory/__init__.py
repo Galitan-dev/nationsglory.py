@@ -15,5 +15,5 @@ class Servers(Enum):
     OMEGA = 'omega'
     PURPLE = 'purple'
 
-    def get_map_url(self):
+    def get_map_url(self) -> str:
         return "https://%s.nationsglory.fr" % self.value

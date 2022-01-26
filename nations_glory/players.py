@@ -1,4 +1,4 @@
-from datetime import datetime
+
 from re import I
 from nations_glory import Servers
 from nations_glory.html import Dom
@@ -89,7 +89,9 @@ class PlayerCard(object):
         self.time_played: int = parse_duration(self.get('temps de jeu') or '')
         self.rank: str = self.get('grade')
         self.reputation: str = self.get('réputation')
-        self.country: Country = Country(self.get('pays'), self.server)
+        
+        country: str = self.get('pays')
+        self.country: Country = Country(country, self.server, False) if country != 'Pas de pays' else None
         self.country_rank: CountryRanks = CountryRanks.get(self.get('rang de pays'))
         
         power: str = self.get('power')
